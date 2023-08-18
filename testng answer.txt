@@ -1,0 +1,193 @@
+1 what is means by Tdd and Bdd?
+
+*Test-Driven Development is a software development process where we write test and run code ,run all test maintainability  all tests continue to pass.TDD include improved code quality, better test coverage, and increased confidence in the code's correctness and reliability.
+*Bdd Behavior-Driven Developmentsoftware development methodology that extends the principles of Test-Driven Development (TDD) to include the collaboration between developers, testers, and domain experts product managers, business analyst in defining the behavior of the software in a more human-readable format.
+=======================================================================================================================================================================================
+2 Differnce between TDD and Bdd?
+
+      TDD                                                                                        BDD
+ 1   Tests that focus on testing 
+     individual units functions or methods                                      The focus is on defining the behavior of the software 
+                                                                                  in a more human-readable format
+     of code in isolation.
+
+=====================================================================================================================================
+
+2     It is used for writing unit tests, which are small                       
+                                                                               the behavior of the entire system or specific features encourages writing tests that 
+                                                                             simulate user interactions and cover the system's behavior from end to end.                  
+     and isolated tests to verify the correctness of individual                 
+     code units.
+=========================================================================================================================================================
+3     TDD written using testing frameworks specific to the programming language     Bdd written using frameworks language Gherkin i.e plan english lanuage
+        such as JUnit for Java or PyTest for Python
+=======================================================================================================================================================
+4      TDD  Assert,test ,after and before test                           Bdd keyword And,then,when,but,given
+=========================================================================================================================================================
+5      Tdd communication is through well-written test cases that describe 
+        the expected behavior of individual code units                            Gherkin, making it accessible to non-technical stakeholders and facilitating better communication between team members with different backgrounds
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Advantages of TDD?
+
+*java based framework
+*it will run llel and croess broswer
+*group togther and run in llel 
+*hard assert and soft assert support
+*main advantages is thers is no main mrethod to excuted test case
+==========================================================================================================================================================
+
+4 what is testng?
+     TestNG is inspired by JUnit and NUnit, but it introduces some new features and functionalities that make it more powerful and flexible for test automation.
+It is an open-source tool and is widely used in the Java development community for automated testing of software applications.and it have annation to excuted testcase in prity manner
+it is widely used in combination with Selenium for web application testing and other Java-based test automation projects, thanks to its robust features and flexibility in managing and executing test cases
+===============================================================================================================================================================
+
+5 what is basic annation of testng?what the excution hierachy of Tesrng?
+@Beforesuite
+@BefoeTest
+@Beforclass
+@Beforemethod
+@Test
+@Aftermethod
+@afterclass
+@aftertest
+@Afersuite
+======================================================================================================================
+
+6 There are 5 testcase . i have to run 3 testcase ? how to achive this?
+by using priority, we can acchvied test case 3 can run first and follwed by other test case can run on it
+
+========================================================================================== 
+7 How to achive priortiztion?
+TestNG will execute the test methods with lower priority values first and then move on to higher priority values.
+i.e start from -2,-1,0,1,2
+================================================================================================
+8 i have 10 testcase and i need to excuted the 3 and 4 testcase frome current excution? how to achive this?
+By using ignore features in testng and it will be excuted 3 and 4 testcase .
+==================================================================================================
+
+9. consider i have two methods named testcase2 and testcase3,which should not be excuted if the test method i failed,how to achieve this?
+By using depends on methods  testcase2 and testcase3 have the dependsOnMethods set to testcase1 . This means that they will only be executed if testcase1 passes successfully. If testcase1 fails, TestNG will skip the execution of testcase2 and testcase3.
+=========================================================================================================
+
+10 I want to run the testcase5 times or 10 time?
+in testng we have feature like Invacation count it will specifies the number of times the test method should be invoked
+=============================================================================================================
+
+11 have you don llel testing in your project ? if yes means , explain how?
+In  my project i had done llel testing to excuted testcase run llel to reduse time consumption, then  ensure that your test cases are designed to be thread-safe and that there are no shared resources causing conflicts between parallel threads
+===============================================================================================================
+
+12 how to achieve grouping in testng?
+ Grouping allows you to categorize your test methods into different groups, making it easier to selectively execute specific groups of tests based on your testing requirements. This is particularly useful when you want to run tests for specific features, modules, or scenarios separately
+In this testng.xml file, we have created two test configurations: "SmokeTests" and "RegressionTests." Each configuration specifies the groups to be included using the <groups> element with the <include> element. This allows you to run tests belonging to specific groups selectively.
+ also use the <exclude> element to exclude specific groups from execution.
+
+=======================================================================================================================
+
+13 i have 100 testcase ,i want to run 40 testcase separately ?how to do?
+ By using 2 ways we can achevied i.e one grouping 40 testcase and then ingnore method we will move on it
+===============================================================================================================
+
+14 what is the exception that might occur when timeout excceds? thread timeoutexception?
+ If the test method takes longer than the specified timeout, TestNG interrupts the method's execution, and the ThreadTimeoutException is thrown.
+ if testMethod takes more than 2 seconds to complete, TestNG will interrupt its execution and throw a ThreadTimeoutException.
+It's essential to set an appropriate timeout value based on the test method's expected execution time. Timeouts help prevent tests from hanging indefinitely and ensure that your test suite completes execution within a reasonable timeframe. When using timeouts, be mindful of the test environment and the potential variations in execution time due to factors like system load and network latency.
+==================================================================================================================================================================================================
+ 15 what expected Exception?
+ test method is expected to throw a particular exception during its execution
+test method is annotated with @Test(expectedExceptions = ArithmeticException.class). It indicates that the test expects to encounter an ArithmeticException during its execution. When the code under test (division by zero) throws an ArithmeticException, the test will pass. If the exception is not thrown or if a different exception is thrown, the test will fail.
+================================================================================================================================================================================================
+ 16 how to achieve data parameterziton or parameterization?
+Data parameterization allows you to run the same test method with different sets of test data, making your test cases more versatile and comprehensive. The testData method returns a 2D array containing the test data. 
+Each row of the array corresponds to a set of test data that will be passed to the testMethod.
+ @DataProvider(name = "testData")
+    public Object[][] testData() {
+        return new Object[][] {
+            {"data1", 10},
+            {"data2", 20},
+            // Add more test data rows as needed
+        };
+    } 
+===========================================================================================================================================================================
+17 how to pass data inputs to the testng class?
+ we can pass inputs data by using 2 ways i.e Parameters:You can pass data inputs directly to the test method using the @Parameters annotation and define the parameter values in the testng.xml configuration file.
+for ex:
+public class ExampleTest {
+
+    @Test
+    @Parameters({"data1", "data2"})
+    public void testMethod(String data1, int data2) {
+        // Test code that uses the provided data inputs
+    }
+}
+ anthor one Data Providers:Data parameterization allows you to run the same test method with different sets of test data, making your test cases more versatile and comprehensive. The testData method returns a 2D array containing the test data. 
+Each row of the array corresponds to a set of test data that will be passed to the testMethod.
+ @DataProvider(name = "testData")
+    public Object[][] testData() {
+        return new Object[][] {
+            {"data1", 10},
+            {"data2", 20},
+            // Add more test data rows as needed
+        };
+    } 
+==============================================================================================================================================================================
+18 what is data provider?
+ Data Provider method in a test class. This method provides the test data in the form of a 2D array or an iterator of arrays (Object[][] or Iterator<Object[]>). Each row of the array represents a set of input data for a test method execution.
+  @DataProvider(name = "testData")
+    public Object[][] testData() {
+        // Provide test data in a 2D array
+        return new Object[][] {
+            {"data1", 10},
+            {"data2", 20},
+            // Add more test data rows as needed
+        };
+    }
+
+    @Test(dataProvider = "testData")
+    public void testMethod(String data, int value) {
+        // Test code that uses the provided test data
+        System.out.println("Data: " + data);
+        System.out.println("Value: " + value);
+    }
+}
+==========================================================================================================================================================================================
+19 what is return type of data provider?
+return the object 
+===========================================================================================================================================
+20 wirte syntax for data provider?
+ @DataProvider(name = "testData")
+    public Object[][] testData() {
+        // Provide test data in a 2D array
+        return new Object[][] {
+            {"data1", 10},
+            {"data2", 20},
+            // Add more test data rows as needed
+        };
+    }
+
+    @Test(dataProvider = "testData")
+    public void testMethod(String data, int value) {
+        // Test code that uses the provided test data
+        System.out.println("Data: " + data);
+        System.out.println("Value: " + value);
+    }
+}
+================================================================================================================
+21 how will you genrate report in testng or which report do you sumbit after testing execution?
+testng result report,index report/ testng result should be submit where all testcase excuted 
+=============================================================================================================
+22 how will run the failed testcase? 
+by using testng failed.xml file we will report on it
+===========================================================================================================
+23 have you used listeners in testng?
+yes we hava listeners in testng inorder to coustomize the behaviour of the testng excution,we hava come ITestlisterner in which we have a used ontestsuccess ,  on test failure
+================================================================================================================================================================================
+24 How to take random screenshots on failure scenario?
+ITestlister on test succes, on test failure
+==================================================================================================================================================================================
+25 have you run cross broswer ? we can achevie this by creating two test suit in xmlfile with differnt broswer which will be lanching multiple broswer to run the same testcase in parrel or simtanensously?
+in some particularc time we use cross broswer testing to excuted testcase in less  time and we can achevie on it 
+In this example, we have set up test classes for testing the same functionality in both Chrome and Firefox browsers. The @Parameters annotation in the setUp method specifies the browser to be used, and the testng.xml file runs the tests in parallel for each browser specified in the parameters.
+With this setup, you can run your tests across different browsers by executing the testng.xml file using TestNG.
+========================================================================================================================
